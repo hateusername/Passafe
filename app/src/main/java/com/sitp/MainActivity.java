@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         String UID = "user";
 
-        String password = "root123";
+        String password = "root1234";
         //String password = "";
 
         PasswordStore passwordStore = PasswordStore.getInstance();
