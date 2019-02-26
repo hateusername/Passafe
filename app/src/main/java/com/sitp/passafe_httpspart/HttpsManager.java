@@ -10,6 +10,8 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -40,7 +42,18 @@ public class HttpsManager {
 
     public void sendKeystring(Context context, String UID, String keystring) throws KeyStoreException, IOException, CertificateException, NoSuchAlgorithmException, UnrecoverableKeyException, KeyManagementException {
 
-        try{
+        URL url = new URL("https://www.ethan-cloud.cn:8443/NewServlet/Demo");
+        HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
+        urlConnection.setRequestMethod("POST");
+
+        OutputStream outputStream = urlConnection.getOutputStream();
+        String data = "uid="+URLEncoder.encode(UID,"utf-8")+"&keystring="+URLEncoder.encode(UID,"utf-8")+"&method=add";
+        outputStream.write(data.getBytes("UTF-8"));
+        outputStream.close();
+
+        urlConnection.connect();
+        System.out.print(urlConnection.getResponseCode());
+        /*try{
             // 服务器端需要验证的客户端证书，其实就是客户端的keystore
             KeyStore keyStore = KeyStore.getInstance("BKS");
             // 客户端信任的服务器端证书
@@ -91,12 +104,29 @@ public class HttpsManager {
 
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     public String queryKeystring(Context context, String UID) throws KeyStoreException, IOException, CertificateException, NoSuchAlgorithmException, UnrecoverableKeyException, KeyManagementException {
 
-        try{
+        URL url = new URL("https://www.ethan-cloud.cn:8443/NewServlet/Demo");
+        HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
+        urlConnection.setRequestMethod("POST");
+
+        OutputStream outputStream = urlConnection.getOutputStream();
+        String data = "uid="+URLEncoder.encode(UID,"utf-8")+"&method=query";
+        outputStream.write(data.getBytes("UTF-8"));
+        outputStream.close();
+
+        urlConnection.connect();
+        System.out.print("!!!code"+urlConnection.getResponseCode());
+
+        InputStreamReader in = new InputStreamReader(urlConnection.getInputStream());
+        BufferedReader reader = new BufferedReader(in);
+        String keystring = reader.readLine();
+
+        return keystring;
+        /*try{
             // 服务器端需要验证的客户端证书，其实就是客户端的keystore
             KeyStore keyStore = KeyStore.getInstance("BKS");
             // 客户端信任的服务器端证书
@@ -154,7 +184,7 @@ public class HttpsManager {
         } catch (Exception e) {
             e.printStackTrace();
             return "";
-        }
+        }*/
     }
 
 }

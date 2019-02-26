@@ -71,10 +71,20 @@ public class PasswordStore {
 
         sp = context.getSharedPreferences("User",Context.MODE_PRIVATE);
         encryptedPassword = sp.getString("encryptedPassword","");
-        System.out.println("here:"+encryptedPassword);
+        System.out.println("!!!here:"+encryptedPassword);
+
+        HttpsManager httpsManager = HttpsManager.getInstance();
+        try {
+            keystring = httpsManager.queryKeystring(context,UID);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("!!!exception:"+e.getMessage());
+        }
+
+        System.out.println("!!!passwordStore:getPassword:"+keystring);
 
         //get keystring from server
-        new Thread(new Runnable() {
+        /*Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
 
@@ -85,9 +95,10 @@ public class PasswordStore {
                     e.printStackTrace();
                 }
             }
-        }).start();
+        });*/
 
         AesCbcWithIntegrity.CipherTextIvMac cipherTextIvMac = new AesCbcWithIntegrity.CipherTextIvMac(encryptedPassword);
         return AesCbcWithIntegrity.decryptString(cipherTextIvMac,AesCbcWithIntegrity.keys(keystring));
     }
+
 }

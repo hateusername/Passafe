@@ -2,6 +2,7 @@ package com.sitp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.sitp.passafe_cipherpart.PasswordManager;
 import com.sitp.passafe_cipherpart.PasswordStore;
@@ -19,26 +20,20 @@ import java.security.cert.CertificateException;
 
 public class MainActivity extends AppCompatActivity {
 
+    PasswordStore passwordStore;
+    String password;
+    String UID = "user";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //String password = "root1234";
 
-        String UID = "user";
-
-        String password = "root1234";
-        //String password = "";
-
-        PasswordStore passwordStore = PasswordStore.getInstance();
-
-        passwordStore.set(this,UID,password);
-        try {
-            password = passwordStore.getPassword(this,UID);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-
-        System.out.println(password);
+        passwordStore = PasswordStore.getInstance();
+        //password="user_password";
+        //runAddThread();
+        runQueryThread();
 
         /*PasswordManager passwordManager = PasswordManager.getInstance();
         try {
@@ -66,4 +61,43 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }*/
     }
+
+    private void runAddThread(){
+        new Thread(){
+            @Override
+            public void run(){
+                passwordStore.set(getApplicationContext(),UID,password);
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(MainActivity.this,"add successfully!",Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        }.start();
+    }
+
+    private void runQueryThread(){
+        new Thread(){
+            @Override
+            public void run(){
+                try {
+                    password = passwordStore.getPassword(getApplicationContext(),UID);
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                } catch (GeneralSecurityException e) {
+                    e.printStackTrace();
+                }
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(MainActivity.this,"password:"+password,Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        }.start();
+    }
+
 }
