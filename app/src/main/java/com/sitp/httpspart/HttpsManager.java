@@ -1,31 +1,20 @@
-package com.sitp.passafe_httpspart;
+package com.sitp.httpspart;
 
 import android.content.Context;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.security.KeyManagementException;
-import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 
-import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.KeyManagerFactory;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManagerFactory;
 
 public class HttpsManager {
 
@@ -47,7 +36,7 @@ public class HttpsManager {
         urlConnection.setRequestMethod("POST");
 
         OutputStream outputStream = urlConnection.getOutputStream();
-        String data = "uid="+URLEncoder.encode(UID,"utf-8")+"&keystring="+URLEncoder.encode(UID,"utf-8")+"&method=add";
+        String data = "uid="+URLEncoder.encode(UID,"utf-8")+"&keystring="+URLEncoder.encode(keystring,"utf-8")+"&method=add";
         outputStream.write(data.getBytes("UTF-8"));
         outputStream.close();
 

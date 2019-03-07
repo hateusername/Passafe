@@ -1,18 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.sitp.activities.MainActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <!--topbar-->
+    <RelativeLayout
+        android:id="@+id/rl_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_bar_height"
+        android:orientation="horizontal"
+        android:gravity="top">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="密码："/>
+        <ImageView
+            android:id="@+id/iv_topbar_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bar_background"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitEnd"
+            android:src="@drawable/backgroud_picture" />
 
+    </RelativeLayout>
 
+    <!--content-->
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:background="@color/content_backgroud">
 
+        <TextView
+            android:id="@+id/tv_appname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:textColor="#000000"
+            android:textSize="40dp"
+            android:textStyle="italic"
+            android:text="APPName"/>
+        <TextView
+            android:id="@+id/tv_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="@dimen/margin_left_from_border"
+            android:textSize="@dimen/order_text_size"
+            android:text="登录方式"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="#ddd"/>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="40dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@color/content_backgroud">
+                <ImageButton
+                    android:id="@+id/ibtn_fingerprint"
+                    android:layout_width="@dimen/imagebutton_size_big"
+                    android:layout_height="@dimen/imagebutton_size_big"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter"
+                    android:background="@color/content_backgroud"
+                    android:src="@drawable/fingerprint"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="#fff">
+                <ImageButton
+                    android:id="@+id/ibtn_password"
+                    android:layout_width="@dimen/imagebutton_size_big"
+                    android:layout_height="@dimen/imagebutton_size_big"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter"
+                    android:background="@color/content_backgroud"
+                    android:src="@drawable/keyboard" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--bottombar-->
+    <RelativeLayout
+        android:id="@+id/rl_bottombar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom_bar_height"
+        android:gravity="bottom">
+
+        <ImageView
+            android:id="@+id/iv_bottombar_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bar_background"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitEnd"
+            android:src="@drawable/bottombar_backgroud_picture" />
+
+    </RelativeLayout>
 
 </LinearLayout>

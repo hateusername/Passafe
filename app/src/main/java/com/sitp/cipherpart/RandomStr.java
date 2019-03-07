@@ -1,4 +1,4 @@
-package com.sitp.passafe_cipherpart;
+package com.sitp.cipherpart;
 
 public class RandomStr {
     

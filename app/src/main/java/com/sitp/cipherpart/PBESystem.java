@@ -1,16 +1,11 @@
-package com.sitp.passafe_cipherpart;
+package com.sitp.cipherpart;
 
-import android.provider.MediaStore;
 import android.util.Base64;
-import android.view.MotionEvent;
-import android.widget.Toast;
 
 import java.io.UnsupportedEncodingException;
-import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.security.GeneralSecurityException;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.security.MessageDigest;
 
 public class PBESystem {

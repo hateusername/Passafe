@@ -1,4 +1,4 @@
-package com.sitp.passafe_cipherpart;
+package com.sitp.cipherpart;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
