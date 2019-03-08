@@ -1,3 +1,2 @@
 # Passafe
-Passafe
 This is an Android app for creating complicated passwords and storing your passwords, which is a school project we are working on... 
