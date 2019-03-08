@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <!--barColorWhenSelected="#FE3D81"-->
+    <tab
+        id="@+id/tab_search"
+        title="search"
+        icon="@mipmap/ic_search"
+        barColorWhenSelected="@color/bar_background"
+        />
+    <tab
+        id="@+id/tab_add"
+        title="add"
+        icon="@mipmap/ic_add"
+        barColorWhenSelected="@color/bar_background"
+        />
+    <tab
+        id="@+id/tab_delete"
+        title="delete"
+        icon="@mipmap/ic_clear"
+        barColorWhenSelected="@color/bar_background"
+        />
+    <tab
+        id="@+id/tab_setting"
+        title="setting"
+        icon="@mipmap/ic_build"
+        barColorWhenSelected="@color/bar_background"
+        />
+    <!--
+    <tab
+        id="@+id/tab_restaurants"
+        title="Restaurants"
+        icon="@mipmap/ic_build"
+        barColorWhenSelected="#FF9800"
+        />
+        -->
+</tabs>
